@@ -5,7 +5,8 @@
         height: '400',
         icons: [], //自定义图标
         defaultIcon: '', //默认显示图标
-        openId: 142
+        openId: 142,
+        selectedId: null
     };
     $.fn.extend({
         initTree: function (options) {
@@ -68,6 +69,7 @@
                 _this.find("a").click(function () {
                     _this.find("a").removeAttr("selected");
                     $(this).attr("selected", "yes");
+                    defaults.selectedId = $(this).attr("id") && $(this).attr("id").split("zgj-tree-a-").length > 1 ? $(this).attr("id").split("zgj-tree-a-")[1] : null;
                 });
             } else {
                 _this.append('no data');
@@ -77,13 +79,21 @@
         locationOpen: function (openId) {
             _this.find("a").removeAttr("selected");
             $("#zgj-tree-a-" + openId).parents("li").attr("hidefocus", 'open');
-            $("#zgj-tree-a-" + openId).attr("selected",true);
+            $("#zgj-tree-a-" + openId).attr("selected", true);
+        },
+        //获取选中的对象ID
+        getSelected: function () {
+            return defaults.selectedId;
         },
         zgjTree: function (options) {
             var _this = this;
             _this.initTree(options);
             if (options.openId) {
                 _this.locationOpen(options.openId);
+            }
+
+            function getSelected() {
+                return _this.getSelected;
             }
         }
     });
