@@ -91,10 +91,6 @@
             if (options.openId) {
                 _this.locationOpen(options.openId);
             }
-
-            function getSelected() {
-                return _this.getSelected;
-            }
         }
     });
 })(jQuery);
