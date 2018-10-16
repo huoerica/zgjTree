@@ -9,6 +9,7 @@
         selectedId: null
     };
     $.fn.extend({
+        //初始化节点
         initTree: function (options) {
             _this = this;
             _this.html("");
